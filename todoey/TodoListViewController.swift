@@ -26,9 +26,9 @@ class TodoListViewController: UITableViewController {
         newItem2.title = "Find"
         itemArray.append(newItem2)
 
-//        if let items = defaults.array(forKey: "ToDoListArray") as? [String] {
-//            itemArray = items
-//       }
+        if let items = defaults.object(forKey: "ToDoListArray") as? [Item] {
+          itemArray = items
+      }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +46,8 @@ class TodoListViewController: UITableViewController {
     //        cell.accessoryType = .none
      //   }
         
+        //Ternary operator ==>
+        // value = condition ? valueIfTrue : valueIfFalse
         cell.accessoryType = item.done ? .checkmark : .none
         
         
@@ -86,7 +88,7 @@ class TodoListViewController: UITableViewController {
             self.itemArray.append(newItem)
             
            
-           // self.defaults.set(self.itemArray, forKey: "ToDoListArray")
+            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
             self.tableView.reloadData()
             
             
